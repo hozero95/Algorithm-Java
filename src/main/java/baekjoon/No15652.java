@@ -1,4 +1,4 @@
-package baekjoon.backtracking.no_15650;
+package baekjoon;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 /**
  * Baekjoon
- * 15652번: N과 M (2)
+ * 15652번: N과 M (4)
  * 난이도: 실버 3
  * 분류: 백트래킹
  *
@@ -15,13 +15,13 @@ import java.util.StringTokenizer;
  * @since 2025-01-15
  */
 @SuppressWarnings("DuplicatedCode")
-public class Main {
+public class No15652 {
     static BufferedReader br;
     static StringTokenizer st;
     static StringBuilder sb;
     static int N;
     static int M;
-    static int[] selected, used;
+    static int[] selected;
 
     static void input() throws IOException {
         br = new BufferedReader(new InputStreamReader(System.in));
@@ -30,7 +30,6 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         selected = new int[M + 1];
-        used = new int[N + 1];
     }
 
     static void solve(int depth) {
@@ -42,14 +41,9 @@ public class Main {
         } else {
             int start = selected[depth - 1] == 0 ? 1 : selected[depth - 1];
             for (int i = start; i <= N; i++) {
-                if (used[i] == 1) {
-                    continue;
-                }
                 selected[depth] = i;
-                used[i] = 1;
                 solve(depth + 1);
                 selected[depth] = 0;
-                used[i] = 0;
             }
         }
     }

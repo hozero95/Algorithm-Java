@@ -1,4 +1,4 @@
-package baekjoon.backtracking.no_15649;
+package baekjoon;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.util.StringTokenizer;
  * @since 2025-01-15
  */
 @SuppressWarnings("DuplicatedCode")
-public class Main {
+public class No15649 {
     static BufferedReader br;
     static StringTokenizer st;
     static StringBuilder sb;
