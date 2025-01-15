@@ -1,4 +1,4 @@
-package baekjoon.backtracking.no_15649;
+package baekjoon.backtracking.no_15650;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 /**
  * Baekjoon
- * 15649번: N과 M (1)
+ * 15652번: N과 M (2)
  * 난이도: 실버 3
  * 분류: 백트래킹
  *
@@ -29,24 +29,26 @@ public class Main {
         sb = new StringBuilder();
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-        selected = new int[M];
-        used = new int[N];
+        selected = new int[M + 1];
+        used = new int[N + 1];
     }
 
     static void solve(int depth) {
-        if (depth == M) {
-            for (int j : selected) {
-                sb.append(j).append(" ");
+        if (depth == M + 1) {
+            for (int i = 1; i < selected.length; i++) {
+                sb.append(selected[i]).append(" ");
             }
             sb.append("\n");
         } else {
-            for (int i = 0; i < N; i++) {
+            int start = selected[depth - 1] == 0 ? 1 : selected[depth - 1];
+            for (int i = start; i <= N; i++) {
                 if (used[i] == 1) {
                     continue;
                 }
-                selected[depth] = i + 1;
+                selected[depth] = i;
                 used[i] = 1;
                 solve(depth + 1);
+                selected[depth] = 0;
                 used[i] = 0;
             }
         }
@@ -54,7 +56,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         input();
-        solve(0);
+        solve(1);
         System.out.println(sb.toString());
     }
 }
